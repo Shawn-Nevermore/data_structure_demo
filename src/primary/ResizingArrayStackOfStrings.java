@@ -16,22 +16,22 @@ public class ResizingArrayStackOfStrings {
 
 	public void push(String item) {
 		if (lastIndex == arr.length - 1) {
-			resize(arr);
+			resize(2 * arr.length);
 		}
 		arr[++lastIndex] = item;
 	}
-	
+
 	public String pop() {
 		String item = arr[lastIndex--];
 		arr[lastIndex] = null;
-		if(arr.length == 4 * (lastIndex+1) && lastIndex > 0) {
-//			re
+		if (lastIndex > 0 && lastIndex == arr.length / 4) {
+			resize(arr.length / 2);
 		}
 		return item;
 	}
 
-	private void resize(String[] arr) {
-		String[] copy = new String[2 * arr.length];
+	private void resize(int capacity) {
+		String[] copy = new String[capacity];
 		for (int i = 0; i <= lastIndex; i++) {
 			copy[i] = arr[i];
 		}
