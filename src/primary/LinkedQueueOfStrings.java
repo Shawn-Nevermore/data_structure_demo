@@ -2,7 +2,7 @@ package primary;
 
 public class LinkedQueueOfStrings {
 
-	private Node last = null, first = null;
+	private Node last, first;
 	
 	private class Node{
 		String item;
@@ -12,6 +12,7 @@ public class LinkedQueueOfStrings {
 	public boolean isEmpty() {
 		return first == null;
 	}
+	
 	
 	public void enqueue(String item) {
 		Node oldLast = last;
@@ -31,6 +32,10 @@ public class LinkedQueueOfStrings {
 		first = first.next;
 		String item = oldFirst.item;
 		oldFirst = null;
+		
+		if(isEmpty()) {
+			last = null;
+		}
 		return item;
 	}
 	
